@@ -5,6 +5,7 @@ import { SmurfContext } from "../contexts/SmurfContext";
 
 import "./App.css";
 import Smurfs from './Smurf/Smurf'
+import SmurfForm from './Smurf/SmurfForm'
 
 const App = (props) => {
   const [smurfs, setSmurfs] = useState([])
@@ -17,7 +18,8 @@ const App = (props) => {
         console.log('this is the axios response : ', response)
       })
       .catch(error => console.log(error.response))
-  },[])
+  },[smurfs])
+
 
   if (smurfs.length < 1 ) {
     return <h1>Loading . . .</h1>
@@ -27,6 +29,7 @@ const App = (props) => {
     <SmurfContext.Provider>
       <div className="App">
         <h1>SMURFS! 2.0 W/ Redux</h1>
+        <SmurfForm />
         {smurfs.map(smurf => (
           <Smurfs smurf={smurf} />
         ))}
